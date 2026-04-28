@@ -13,11 +13,14 @@ namespace TennecoOPCUA
     {
         static async Task Main()
         {
-            // Remplacer avec la vraie IP quand disponible 
-            const string serverUrl = "opc.tcp://BRSC-FGFXSQ3.pt.int.tenneco.com:53530/OPCUA/SimulationServer";
             //"opc.tcp://192.168.0.2:4840";
             // "opc.tcp://BRSC-FGFXSQ3.pt.int.tenneco.com:53530/OPCUA/SimulationServer"; // 10.14.67.11 
             // var endpointUrl = "opc.tcp://192.168.0.2:4840";
+            // Remplacer avec la vraie IP quand disponible 
+            /* cas de figure de un seul PLC a gerer 
+             
+            const string serverUrl = "opc.tcp://BRSC-FGFXSQ3.pt.int.tenneco.com:53530/OPCUA/SimulationServer";
+             */
 
             try
             {
@@ -39,7 +42,7 @@ namespace TennecoOPCUA
 
                 var config = new ApplicationConfiguration
                 {
-                    ApplicationName = "OPC UA - JORDI-TENNECO ",
+                    ApplicationName = "OPC UA- TENNECO ",
 
                     /*
                      * c'est un identifiant universel (URI) unique au monde pour votre instance d'application OPC UA.
@@ -58,7 +61,12 @@ namespace TennecoOPCUA
                     },
                     TransportQuotas = new TransportQuotas
                     {
-                        OperationTimeout = 15000
+                        OperationTimeout = 60000
+                        /*
+                         le temps maximum que le client attendra pour une réponse du serveur pour une seule opération. 
+                        Si le serveur ne répond pas dans ce délai, le client déclenche généralement une erreur de dépassement de délai, 
+                        ce qui permet à l'application de gérer les problèmes de communication de manière gracieuse
+                         */
 
                         /*
                          IL Y'A d'autres varibale comme 
@@ -95,7 +103,7 @@ namespace TennecoOPCUA
             },
 
             TransportConfigurations = new TransportConfigurationCollection(),
-            TransportQuotas = new TransportQuotas { OperationTimeout = 15000 },
+            TransportQuotas = new TransportQuotas { OperationTimeout = 60000 },
             ClientConfiguration = new ClientConfiguration { DefaultSessionTimeout = 60000 }
         };
                      */
@@ -112,14 +120,14 @@ namespace TennecoOPCUA
                         { // oú les certificats de confiance sont stocké !
                             StoreType = "Directory",
                             StorePath = $"{certStore}\\UA Applications"
-                        }, // oú la perssone qui donne le certificat stocke le certificat !
+                        }, 
                         TrustedIssuerCertificates = new CertificateTrustList
-                        { 
+                        { // oú la personnee  qui donne le certificat stocke le certificat !(Authorities Certificate )
                             StoreType = "Directory",
                             StorePath = $"{certStore}\\UA Certificate Authorities"
                         },
                         RejectedCertificateStore = new CertificateTrustList
-                        {
+                        { // oú les certificats rejetés sont stocké !  ( Pour les revue ulterieur par l'administrateur ) 
                             StoreType = "Directory",
                             StorePath = $"{certStore}\\RejectedCertificates"
                         },
@@ -130,7 +138,7 @@ namespace TennecoOPCUA
 
                 // STEP 2 — Validation + Certificat
 
-                // API MODERNE — CheckApplicationInstanceCertificate supprimée
+                // API MODERNE — CheckApplicationInstanceCertificate á étésupprimée mais peut etre utilisé ,V 1.4.. .. .. du Paket OPC-UA 
                 await config.ValidateAsync(ApplicationType.Client); // meilleur que -->   await config.Validate (.... ) ; 
                 // verifie si le certificat est OK ! 
 
@@ -146,7 +154,50 @@ namespace TennecoOPCUA
                     e.Accept = true;
                 };
 
-                // STEP 3 — Endpoint
+                
+                // Approach pour pour gerer plusieur PLC ..  --------> 
+                 
+                var plcs = new List<PlcDefinition>
+{ 
+    new PlcDefinition
+    {
+        Name = "PLC 1 - Prosys Simulator  ",
+        EndpointUrl = "opc.tcp://BRSC-FGFXSQ3.pt.int.tenneco.com:53530/OPCUA/SimulationServer",
+        NodesToMonitor = new List<string>
+        {
+        //"ns=3;i=1007",
+        //"ns=3;i=1001",
+        //"ns=3;i=1002",
+        "ns=3;i=1003",
+        //"ns=3;i=1004",
+       // "ns=3;i=1005", 
+        //"ns=3;i=1006"
+        // ...... ajoute ici autant de NodeId que tu veux
+        }
+        
+    },
+    
+
+    // plc 2
+  /* new PlcDefinition
+    {
+        Name = "PLC_TEST -- VON Alex ",
+        EndpointUrl = "opc.tcp://192.168.0.2:4840",
+        NodesToMonitor = new List<string>
+        {
+           "ns=4;i=56",
+            //"ns=4;i=65"
+        }
+    } */ 
+    
+};
+                /* 
+                 
+               // Appraoch pour gerer un seul PLC 
+
+                 
+
+                // STEP 3.1 — Endpoint
                 Console.WriteLine($"Essaie de ce connecter au Module : {serverUrl}");
 
                 //  Signature corrigée
@@ -154,7 +205,7 @@ namespace TennecoOPCUA
                 var endpointConfig = EndpointConfiguration.Create(config);
                 var endpoint = new ConfiguredEndpoint(null, endpointDesc, endpointConfig);
 
-                // STEP 4 — Creation de la Session
+                // STEP 4.1 — Creation de la Session
                 using var session = await Session.Create(
                      config,
                     endpoint,
@@ -168,7 +219,9 @@ namespace TennecoOPCUA
                 Console.WriteLine($"   Session ID : {session.SessionId}");
                 Console.WriteLine($"   Server URI : {session.Endpoint.Server.ApplicationUri}");
 
-                // STEP 5 — Subscription + Live Monitoring
+
+
+                // STEP 5.1 — Subscription + Live Monitoring
                 var subscription = CreateSubscription(session);
                 AddMonitoredItems(subscription);
 
@@ -178,6 +231,47 @@ namespace TennecoOPCUA
 
                 session.CloseAsync(); // meilleur que --> session.Close() ; 
                 Console.WriteLine(" Déconnecter .");
+
+                */
+
+
+                foreach (var plc in plcs)
+                {
+                    Console.WriteLine("\n=======================================");
+                    Console.WriteLine($" Connexion au Divers PLC : {plc.Name}");
+                    Console.WriteLine($" Endpoint         : {plc.EndpointUrl}");
+                    Console.WriteLine("===================\n");
+
+                    // STEP 3.n — Endpoint (par PLC) --- Connexion 
+                    var endpointDesc = CoreClientUtils.SelectEndpoint(
+                        config,
+                        plc.EndpointUrl,
+                        useSecurity: false);
+
+                    var endpointConfig = EndpointConfiguration.Create(config);
+                    var endpoint = new ConfiguredEndpoint(null, endpointDesc, endpointConfig);
+
+                    // STEP 4.n — Session (UNE PAR PLC)
+                    var session = await Session.Create(
+                        config,
+                        endpoint,
+                        true, // ----------- true pour une souscription stable 
+                        $"Session_{plc.Name}",
+                        60000,
+                        new UserIdentity(new AnonymousIdentityToken()),
+                        null);
+
+                    Console.WriteLine($" [{plc.Name}] Session connectée");
+
+                    // STEP 5.n — Subscription + Live Monitoring
+                    var subscription = CreateSubscription(session);
+                    AddMonitoredItems(subscription, plc);
+                }
+                Console.WriteLine("\n Toutes les connexions PLC sont actives.");
+                Console.WriteLine(" Appuie sur une touche pour arrêter le programme...");
+                Console.ReadKey();
+
+
             }
             catch (Exception ex)
             {
@@ -208,8 +302,9 @@ namespace TennecoOPCUA
             return subscription;
         }
 
-        private static void AddMonitoredItems(Subscription subscription)
+        private static void AddMonitoredItems(Subscription subscription , PlcDefinition plc )
         {
+            /*
             var nodesToMonitor = new List<string>
     {
        // "ns=3;i=1007",
@@ -242,6 +337,30 @@ namespace TennecoOPCUA
             }
 
             subscription.ApplyChanges();
+            */
+
+            foreach (var node in plc.NodesToMonitor)
+            {
+                var monitoredItem = new MonitoredItem(subscription.DefaultItem)
+                {
+                    StartNodeId = NodeId.Parse(node),
+                    AttributeId = Attributes.Value,
+                    SamplingInterval = 0,//remet a 0
+                    QueueSize = 10,
+                    DiscardOldest = true,
+                   // MonitoringMode = MonitoringMode.Reporting,//enleve cette ligne
+
+                    // ⭐ CONTEXTE PLC + NODE
+                    DisplayName = $"{plc.Name}:{node}"
+                }; 
+
+                monitoredItem.Notification += OnDataChanged;
+                subscription.AddItem(monitoredItem);
+
+                Console.WriteLine($"[{plc.Name}] Monitoring actif : {node}");
+            }
+
+            subscription.ApplyChanges();
         }
 
         private static void OnDataChanged(
@@ -256,6 +375,8 @@ namespace TennecoOPCUA
                 Console.WriteLine($"Valeur    : {value.Value}");
                 Console.WriteLine($"Status    : {value.StatusCode}");
                 Console.WriteLine($"Timestamp : {value.SourceTimestamp}");
+                
+
             }
         }
     }
