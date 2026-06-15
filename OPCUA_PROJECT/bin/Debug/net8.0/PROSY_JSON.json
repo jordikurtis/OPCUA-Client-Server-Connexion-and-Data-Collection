@@ -1,0 +1,58 @@
+{
+  "database": {
+    "provider": "PostgreSQL",
+    "connectionString": "Host=localhost;Port=5432;Database=OPC_UA Data;Username=postgres;Password=Julie alisson"
+  },
+
+  "plcs": [
+    {
+      "name": "ProsysSimulation",
+      "endpointUrl": "opc.tcp://BRSC-FGFXSQ3.pt.int.tenneco.com:53530/OPCUA/SimulationServer",
+      "enabled": true,
+
+      "nodes": [
+        {
+          "name": "simulation",
+          "variables": [
+            {
+              "name": "Constant",
+              "nodeId": "ns=3;i=1007",
+              "dataType": "Double"
+            },
+            {
+              "name": "Counter",
+              "nodeId": "ns=3;i=1001",
+              "dataType": "Int32"
+            },
+            {
+              "name": "Random",
+              "nodeId": "ns=3;i=1002",
+              "dataType": "Double"
+            },
+            {
+              "name": "Sawtooth",
+              "nodeId": "ns=3;i=1003",
+              "dataType": "Double"
+            },
+            {
+              "name": "Sinusoid",
+              "nodeId": "ns=3;i=1004",
+              "dataType": "Double"
+            },
+            {
+              "name": "Square",
+              "nodeId": "ns=3;i=1005",
+              "dataType": "Double"
+            },
+
+            {
+              "name": "Triangle",
+              "nodeId": "ns=3;i=1006",
+              "dataType": "Double"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

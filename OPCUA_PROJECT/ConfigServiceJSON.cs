@@ -9,14 +9,78 @@ using System.Text.Json;
 
 namespace OPCUA_PROJECT
 {
+        public class ConfigServiceJSON
+        {
+            private readonly string _configPath;
+
+            public ConfigServiceJSON(string configPath = "PROSY_JSON.json") //  OPCUA_NodeId_Config.json
+        {
+                _configPath = configPath;
+            }
+
+            public AppConfig LoadConfig()
+            {
+                if (!File.Exists(_configPath))
+                {
+                    Console.WriteLine($"[Config] Fichier '{_configPath}' introuvable.");
+                    return new AppConfig();
+                }
+
+                try
+                {
+                    var json = File.ReadAllText(_configPath);
+
+                    var options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+
+                    var config = JsonSerializer.Deserialize<AppConfig>(json, options)
+                                 ?? new AppConfig();
+
+                    // Filtrage léger (sans logique métier)
+                    config.Plcs = config.Plcs
+                        .Where(plc => plc.Enabled)
+                        .Select(plc =>
+                        {
+                            plc.Nodes = plc.Nodes
+                                .Where(n => n.Variables.Any(v => v.Enabled))
+                                .Select(n =>
+                                {
+                                    n.Variables = n.Variables
+                                        .Where(v => v.Enabled)
+                                        .ToList();
+                                    return n;
+                                })
+                                .ToList();
+                            return plc;
+                        })
+                        .ToList();
+
+                    Console.WriteLine($"[Config] {config.Plcs.Count} PLC(s) actif(s) chargé(s).");
+
+                    foreach (var plc in config.Plcs)
+                    {
+                        Console.WriteLine($"[Config] → {plc.Name} ({plc.Nodes.Count} noeud(s))");
+                    }
+
+                    return config;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"[Config] Erreur lecture JSON: {ex.Message}");
+                    return new AppConfig();
+                }
+            }
+        }
+    }
     /*
      Charge la configuration des PLCs depuis un fichier JSON.
     /// Si le fichier n'existe pas → crée un fichier exemple automatiquement.
 
      
      */
-
-
+    /*
     public class ConfigServiceJSON
     {
 
@@ -24,82 +88,58 @@ namespace OPCUA_PROJECT
         /// Charge la configuration des PLCs depuis un fichier JSON.
         /// Si le fichier n'existe pas → crée un fichier exemple automatiquement.
         /// </summary>
-            private readonly string _configPath;
+        private readonly string _configPath;
 
-            public ConfigServiceJSON(string configPath = "OPCUA_NodeId_Config.json")
+        public ConfigServiceJSON(string configPath = "OPCUA_NodeId_Config.json")
+        {
+            _configPath = configPath;
+        }
+
+        public List<PlcDefinition> LoadPlcs()
+        {
+            // Fichier introuvable → créer un exemple
+            if (!File.Exists(_configPath))
             {
-                _configPath = configPath;
+                Console.WriteLine($"[Config] Fichier '{_configPath}' introuvable.");
+               
+                return new List<PlcDefinition>();
             }
 
-            public List<PlcDefinition> LoadPlcs()
+            try
             {
-                // Fichier introuvable → créer un exemple
-                if (!File.Exists(_configPath))
+                var json = File.ReadAllText(_configPath);
+                var options = new JsonSerializerOptions
                 {
-                    Console.WriteLine($"[Config] Fichier '{_configPath}' introuvable.");
-                    CreateExampleConfig();
-                    Console.WriteLine($"[Config] Fichier exemple créé → modifie-le et relance.");
-                    return new List<PlcDefinition>();
-                }
-
-                try
-                {
-                    var json = File.ReadAllText(_configPath);
-                    var options = new JsonSerializerOptions
-                    {
-                        PropertyNameCaseInsensitive = true  // endpointUrl = EndpointUrl ✅
-                    };
-
-                    var configFile = JsonSerializer.Deserialize<PlcConfigFile>(json, options);
-                    var plcs = configFile?.Plcs ?? new List<PlcDefinition>();
-
-                    // Filtrer les PLCs désactivés
-                    var activePlcs = plcs.Where(p => p.Enabled).ToList();
-
-                    Console.WriteLine($"[Config] {plcs.Count} PLC(s) trouvé(s)" +
-                                      $" — {activePlcs.Count} actif(s)");
-
-                    foreach (var plc in activePlcs)
-                        Console.WriteLine($"[Config]    → {plc.Name} " +
-                                          $"({plc.Nodes.Count} noeud(s))");
-
-                    return activePlcs;
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"[Config] Erreur lecture JSON: {ex.Message}");
-                    return new List<PlcDefinition>();
-                }
-            }
-
-            private void CreateExampleConfig()
-            {
-                var example = new PlcConfigFile
-                {
-                    Plcs = new List<PlcDefinition>
-                {
-                    new PlcDefinition
-                    {
-                        Name        = "PLC_EXEMPLE",
-                        EndpointUrl = "opc.tcp://192.168.0.1:4840",
-                        Enabled     = false,
-                        Nodes       = new List<NodeDefinition>
-                        {
-                            new NodeDefinition
-                            {
-                                NodeId = "ns=2;s=Speed",
-                                Name   = "Vitesse",
-                                Unit   = "rpm"
-                            }
-                        }
-                    }
-                }
+                    PropertyNameCaseInsensitive = true  // endpointUrl = EndpointUrl 
                 };
 
-                var options = new JsonSerializerOptions { WriteIndented = true };
-                File.WriteAllText(_configPath, JsonSerializer.Serialize(example, options));
+                var configFile = JsonSerializer.Deserialize<PlcConfigFile>(json, options);
+                var plcs = configFile?.Plcs ?? new List<PlcDefinition>();
+
+                // Filtrer les PLCs désactivés
+                var activePlcs = plcs.Where(p => p.Enabled).ToList();
+
+                Console.WriteLine($"[Config] {plcs.Count} PLC(s) trouvé(s)" +
+                                  $" — {activePlcs.Count} actif(s)");
+
+                foreach (var plc in activePlcs)
+                    Console.WriteLine($"[Config]    → {plc.Name} " +
+                                      $"({plc.Nodes.Count} noeud(s))");
+
+                return activePlcs;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"[Config] Erreur lecture JSON: {ex.Message}");
+                return new List<PlcDefinition>();
             }
         }
+
+
+
+
+
+    }
     
 
 
@@ -183,5 +223,7 @@ namespace OPCUA_PROJECT
 
         }
 */
-    }
+
+
+
 

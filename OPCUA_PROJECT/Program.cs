@@ -1,14 +1,67 @@
 ﻿
 using System;
 using System.Collections.Generic;
+
 using System.Threading;
 using System.Threading.Tasks;
+using System.Linq;
+
 using Opc.Ua;
 using Opc.Ua.Client;
 using Opc.Ua.Configuration;
 
 namespace OPCUA_PROJECT
 {
+      class Program
+        {
+            static async Task Main()
+            {
+                Console.WriteLine("=== OPC UA Client — Tenneco Kolben Ring ===\n");
+
+                // 1️---- Charger la configuration JSON
+                var configService = new ConfigServiceJSON("PROSY_JSON.json"); // PROSY_JSON.json OPCUA_NodeId_Config.json
+
+            var config = configService.LoadConfig();
+
+                if (!config.Plcs.Any())
+                {
+                    Console.WriteLine("Aucun PLC actif trouvé. Arrêt.");
+                    return;
+                }
+
+                Console.WriteLine($"{config.Plcs.Count} PLC(s) actif(s) chargé(s).\n");
+
+                // 2️ -->  Initialiser la base de données depuis la config
+                IDatabaseService db = config.Database.Provider switch
+                {
+                    "PostgreSQL" => new PostgresService(config.Database.ConnectionString),
+                    _ => throw new Exception($"Provider DB non supporté : {config.Database.Provider}")
+                };
+
+                if (!await db.TestConnectionAsync())
+                {
+                    Console.WriteLine("Impossible de démarrer sans base de données.");
+                    return;
+                }
+
+                // 3️--->  Démarrer les clients OPC UA (un par PLC, en parallèle)
+                var tasks = config.Plcs.Select(plc =>
+                {
+                    var client = new OPCUAService();
+                    return client.ConnectAndMonitorAsync(
+                        plc,
+                        data => db.SaveAsync(data)
+                    );
+                });
+
+                await Task.WhenAll(tasks);
+
+                Console.WriteLine("\nApplication lancée. CTRL+C pour arrêter.");
+                await Task.Delay(-1);
+            }
+        }
+    }
+    /*
     class Program
     {
         // ── Connection String PostgreSQL ──────────────────────
@@ -33,21 +86,21 @@ namespace OPCUA_PROJECT
                 }
             },
             */
-            // ── Décommenter quand le vrai module sera accessible
-            
-           /* new PlcDefinition
-            {
-                Name        = "Stossschleifen Machine ",
-                EndpointUrl = "opc.tcp://10.14.67.11:4840",
-                NodesToMonitor = new List<string>
-                {
-                    "ns=3;s=ns=3;s=\"Stoßschleifmaschine\".\"Antrieb_Eindrückstempel\".\"Drehmomente\"",
-                    "ns=2;s=VotreNodeId2",
-                }
-            },
-           */ 
-        }; 
+    // ── Décommenter quand le vrai module sera accessible
 
+    /* new PlcDefinition
+     {
+         Name        = "Stossschleifen Machine ",
+         EndpointUrl = "opc.tcp://10.14.67.11:4840",
+         NodesToMonitor = new List<string>
+         {
+             "ns=3;s=ns=3;s=\"Stoßschleifmaschine\".\"Antrieb_Eindrückstempel\".\"Drehmomente\"",
+             "ns=2;s=VotreNodeId2",
+         }
+     },
+    */
+//}; 
+/*
         static async Task Main()
         {
             Console.WriteLine("=== OPC UA Client — Tenneco Kolben Ring ===");
@@ -96,9 +149,9 @@ namespace OPCUA_PROJECT
         }
     }
 
+*/
 
 
-}
     
 
 
