@@ -1,0 +1,8 @@
+C:\Users\WILFTONF\source\repos\OPCUA_PROJECT.Api\obj\Debug\net8.0\OPCUA_PROJECT.Api.csproj.AssemblyReference.cache
+C:\Users\WILFTONF\source\repos\OPCUA_PROJECT.Api\obj\Debug\net8.0\rpswa.dswa.cache.json
+C:\Users\WILFTONF\source\repos\OPCUA_PROJECT.Api\obj\Debug\net8.0\OPCUA_PROJECT.Api.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\WILFTONF\source\repos\OPCUA_PROJECT.Api\obj\Debug\net8.0\OPCUA_PROJECT.Api.AssemblyInfoInputs.cache
+C:\Users\WILFTONF\source\repos\OPCUA_PROJECT.Api\obj\Debug\net8.0\OPCUA_PROJECT.Api.AssemblyInfo.cs
+C:\Users\WILFTONF\source\repos\OPCUA_PROJECT.Api\obj\Debug\net8.0\OPCUA_PROJECT.Api.csproj.CoreCompileInputs.cache
+C:\Users\WILFTONF\source\repos\OPCUA_PROJECT.Api\obj\Debug\net8.0\OPCUA_PROJECT.Api.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\WILFTONF\source\repos\OPCUA_PROJECT.Api\obj\Debug\net8.0\OPCUA_PROJECT.Api.MvcApplicationPartsAssemblyInfo.cache
