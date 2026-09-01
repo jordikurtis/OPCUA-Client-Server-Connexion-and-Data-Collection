@@ -1,0 +1,30 @@
+{
+  "version": 2,
+  "dgSpecHash": "dOyH3r2d/KM=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\WILFTONF\\source\\repos\\OPCUA_PROJECT.Api\\OPCUA_PROJECT.Api.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\WILFTONF\\.nuget\\packages\\dapper\\2.1.35\\dapper.2.1.35.nupkg.sha512",
+    "C:\\Users\\WILFTONF\\.nuget\\packages\\dapper.postgres\\0.0.6\\dapper.postgres.0.0.6.nupkg.sha512",
+    "C:\\Users\\WILFTONF\\.nuget\\packages\\dapperbulkqueries.common\\1.9001.512\\dapperbulkqueries.common.1.9001.512.nupkg.sha512",
+    "C:\\Users\\WILFTONF\\.nuget\\packages\\dapperbulkqueries.npgsql\\1.9001.512\\dapperbulkqueries.npgsql.1.9001.512.nupkg.sha512",
+    "C:\\Users\\WILFTONF\\.nuget\\packages\\microsoft.extensions.apidescription.server\\8.0.0\\microsoft.extensions.apidescription.server.8.0.0.nupkg.sha512",
+    "C:\\Users\\WILFTONF\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.0\\microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512",
+    "C:\\Users\\WILFTONF\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\8.0.0\\microsoft.extensions.logging.abstractions.8.0.0.nupkg.sha512",
+    "C:\\Users\\WILFTONF\\.nuget\\packages\\microsoft.openapi\\2.7.5\\microsoft.openapi.2.7.5.nupkg.sha512",
+    "C:\\Users\\WILFTONF\\.nuget\\packages\\newtonsoft.json\\13.0.4\\newtonsoft.json.13.0.4.nupkg.sha512",
+    "C:\\Users\\WILFTONF\\.nuget\\packages\\npgsql\\10.0.3\\npgsql.10.0.3.nupkg.sha512",
+    "C:\\Users\\WILFTONF\\.nuget\\packages\\npgsql.json.net\\10.0.3\\npgsql.json.net.10.0.3.nupkg.sha512",
+    "C:\\Users\\WILFTONF\\.nuget\\packages\\swashbuckle.aspnetcore\\10.2.3\\swashbuckle.aspnetcore.10.2.3.nupkg.sha512",
+    "C:\\Users\\WILFTONF\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\10.2.3\\swashbuckle.aspnetcore.swagger.10.2.3.nupkg.sha512",
+    "C:\\Users\\WILFTONF\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\10.2.3\\swashbuckle.aspnetcore.swaggergen.10.2.3.nupkg.sha512",
+    "C:\\Users\\WILFTONF\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\10.2.3\\swashbuckle.aspnetcore.swaggerui.10.2.3.nupkg.sha512",
+    "C:\\Users\\WILFTONF\\.nuget\\packages\\system.diagnostics.diagnosticsource\\9.0.11\\system.diagnostics.diagnosticsource.9.0.11.nupkg.sha512",
+    "C:\\Users\\WILFTONF\\.nuget\\packages\\system.text.json\\8.0.5\\system.text.json.8.0.5.nupkg.sha512",
+    "C:\\Users\\WILFTONF\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.23\\microsoft.windowsdesktop.app.ref.8.0.23.nupkg.sha512",
+    "C:\\Users\\WILFTONF\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.23\\microsoft.netcore.app.ref.8.0.23.nupkg.sha512",
+    "C:\\Users\\WILFTONF\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.23\\microsoft.aspnetcore.app.ref.8.0.23.nupkg.sha512",
+    "C:\\Users\\WILFTONF\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\8.0.23\\microsoft.netcore.app.host.win-x64.8.0.23.nupkg.sha512"
+  ],
+  "logs": []
+}
