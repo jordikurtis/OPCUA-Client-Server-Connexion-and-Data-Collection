@@ -1,0 +1,64 @@
+[2026-08-28 10:54:48] [INFO   ] [SYSTEM              ] OPCUA Client démarré !!! 
+[2026-08-28 10:54:49] [INFO   ] [SYSTEM              ] [MonitoredVariablesService] 3 variable(s) synchronisée(s).
+[2026-08-28 10:54:51] [INFO   ] [PLC1_Prosys_Simulator] [SESSION]  Connecté — ID: ns=1;g=45b9f5d0-efb2-4a1c-a7db-99032887d524
+[2026-08-28 10:54:51] [INFO   ] [PLC1_Prosys_Simulator] [SUBSCRIPTION] Créée pour PLC1_Prosys_Simulator
+[2026-08-28 10:54:51] [INFO   ] [PLC1_Prosys_Simulator] [MONITORING] Actif : Simulation.Counter
+[2026-08-28 10:54:51] [INFO   ] [PLC1_Prosys_Simulator] [MONITORING] Actif : Simulation.Random
+[2026-08-28 10:54:51] [INFO   ] [PLC1_Prosys_Simulator] [MONITORING] Actif : Simulation.Sinusoid
+[2026-08-28 10:54:51] [INFO   ] [PLC1_Prosys_Simulator] [STATUS] OK PLC1_Prosys_Simulator — ONLINE
+[2026-08-28 13:09:29] [INFO   ] [SYSTEM              ] OPCUA Client démarré !!! 
+[2026-08-28 13:09:30] [INFO   ] [SYSTEM              ] [MonitoredVariablesService] 3 variable(s) synchronisée(s).
+[2026-08-28 13:09:31] [INFO   ] [PLC1_Prosys_Simulator] [SESSION]  Connecté — ID: ns=1;g=5d4c50e5-41f6-4dea-9f04-9069718c303f
+[2026-08-28 13:09:31] [INFO   ] [PLC1_Prosys_Simulator] [SUBSCRIPTION] Créée pour PLC1_Prosys_Simulator
+[2026-08-28 13:09:31] [INFO   ] [PLC1_Prosys_Simulator] [MONITORING] Actif : Simulation.Counter
+[2026-08-28 13:09:31] [INFO   ] [PLC1_Prosys_Simulator] [MONITORING] Actif : Simulation.Random
+[2026-08-28 13:09:31] [INFO   ] [PLC1_Prosys_Simulator] [MONITORING] Actif : Simulation.Sinusoid
+[2026-08-28 13:09:31] [INFO   ] [PLC1_Prosys_Simulator] [STATUS] OK PLC1_Prosys_Simulator — ONLINE
+[2026-08-28 13:56:09] [INFO   ] [SYSTEM              ] OPCUA Client démarré !!! 
+[2026-08-28 13:56:10] [INFO   ] [SYSTEM              ] [MonitoredVariablesService] 3 variable(s) synchronisée(s).
+[2026-08-28 13:56:11] [INFO   ] [PLC1_Prosys_Simulator] [SESSION]  Connecté — ID: ns=1;g=61210461-b63e-4068-b3ec-ec61e5c3415e
+[2026-08-28 13:56:11] [INFO   ] [PLC1_Prosys_Simulator] [SUBSCRIPTION] Créée pour PLC1_Prosys_Simulator
+[2026-08-28 13:56:11] [INFO   ] [PLC1_Prosys_Simulator] [MONITORING] Actif : Simulation.Counter
+[2026-08-28 13:56:11] [INFO   ] [PLC1_Prosys_Simulator] [MONITORING] Actif : Simulation.Random
+[2026-08-28 13:56:11] [INFO   ] [PLC1_Prosys_Simulator] [MONITORING] Actif : Simulation.Sinusoid
+[2026-08-28 13:56:11] [INFO   ] [PLC1_Prosys_Simulator] [STATUS] OK PLC1_Prosys_Simulator — ONLINE
+[2026-08-28 14:00:46] [INFO   ] [SYSTEM              ] OPCUA Client démarré !!! 
+[2026-08-28 14:00:47] [INFO   ] [SYSTEM              ] [MonitoredVariablesService] 3 variable(s) synchronisée(s).
+[2026-08-28 14:00:48] [INFO   ] [PLC1_Prosys_Simulator] [SESSION]  Connecté — ID: ns=1;g=9a54f497-2426-4847-9e7a-e0b889309f62
+[2026-08-28 14:00:48] [INFO   ] [PLC1_Prosys_Simulator] [SUBSCRIPTION] Créée pour PLC1_Prosys_Simulator
+[2026-08-28 14:00:48] [INFO   ] [PLC1_Prosys_Simulator] [MONITORING] Actif : Simulation.Counter
+[2026-08-28 14:00:48] [INFO   ] [PLC1_Prosys_Simulator] [MONITORING] Actif : Simulation.Random
+[2026-08-28 14:00:48] [INFO   ] [PLC1_Prosys_Simulator] [MONITORING] Actif : Simulation.Sinusoid
+[2026-08-28 14:00:48] [INFO   ] [PLC1_Prosys_Simulator] [STATUS] OK PLC1_Prosys_Simulator — ONLINE
+[2026-08-28 14:02:47] [INFO   ] [SYSTEM              ] OPCUA Client démarré !!! 
+[2026-08-28 14:02:48] [INFO   ] [SYSTEM              ] [MonitoredVariablesService] 3 variable(s) synchronisée(s).
+[2026-08-28 14:02:49] [INFO   ] [PLC1_Prosys_Simulator] [SESSION]  Connecté — ID: ns=1;g=95ebab5b-4dc0-4d75-9ad5-a1faa08ea61b
+[2026-08-28 14:02:49] [INFO   ] [PLC1_Prosys_Simulator] [SUBSCRIPTION] Créée pour PLC1_Prosys_Simulator
+[2026-08-28 14:02:49] [INFO   ] [PLC1_Prosys_Simulator] [MONITORING] Actif : Simulation.Counter
+[2026-08-28 14:02:49] [INFO   ] [PLC1_Prosys_Simulator] [MONITORING] Actif : Simulation.Random
+[2026-08-28 14:02:49] [INFO   ] [PLC1_Prosys_Simulator] [MONITORING] Actif : Simulation.Sinusoid
+[2026-08-28 14:02:49] [INFO   ] [PLC1_Prosys_Simulator] [STATUS] OK PLC1_Prosys_Simulator — ONLINE
+[2026-08-28 14:03:33] [INFO   ] [SYSTEM              ] OPCUA Client démarré !!! 
+[2026-08-28 14:03:34] [INFO   ] [SYSTEM              ] [MonitoredVariablesService] 3 variable(s) synchronisée(s).
+[2026-08-28 14:03:35] [INFO   ] [PLC1_Prosys_Simulator] [SESSION]  Connecté — ID: ns=1;g=1906285d-d94c-4ba2-a17e-749844159fab
+[2026-08-28 14:03:35] [INFO   ] [PLC1_Prosys_Simulator] [SUBSCRIPTION] Créée pour PLC1_Prosys_Simulator
+[2026-08-28 14:03:35] [INFO   ] [PLC1_Prosys_Simulator] [MONITORING] Actif : Simulation.Counter
+[2026-08-28 14:03:35] [INFO   ] [PLC1_Prosys_Simulator] [MONITORING] Actif : Simulation.Random
+[2026-08-28 14:03:35] [INFO   ] [PLC1_Prosys_Simulator] [MONITORING] Actif : Simulation.Sinusoid
+[2026-08-28 14:03:35] [INFO   ] [PLC1_Prosys_Simulator] [STATUS] OK PLC1_Prosys_Simulator — ONLINE
+[2026-08-28 14:13:12] [INFO   ] [SYSTEM              ] OPCUA Client démarré !!! 
+[2026-08-28 14:13:12] [INFO   ] [SYSTEM              ] [MonitoredVariablesService] 3 variable(s) synchronisée(s).
+[2026-08-28 14:13:13] [INFO   ] [PLC1_Prosys_Simulator] [SESSION]  Connecté — ID: ns=1;g=ee29a5b9-4a86-4ae0-a885-c76bf2649f6d
+[2026-08-28 14:13:14] [INFO   ] [PLC1_Prosys_Simulator] [SUBSCRIPTION] Créée pour PLC1_Prosys_Simulator
+[2026-08-28 14:13:14] [INFO   ] [PLC1_Prosys_Simulator] [MONITORING] Actif : Simulation.Counter
+[2026-08-28 14:13:14] [INFO   ] [PLC1_Prosys_Simulator] [MONITORING] Actif : Simulation.Random
+[2026-08-28 14:13:14] [INFO   ] [PLC1_Prosys_Simulator] [MONITORING] Actif : Simulation.Sinusoid
+[2026-08-28 14:13:14] [INFO   ] [PLC1_Prosys_Simulator] [STATUS] OK PLC1_Prosys_Simulator — ONLINE
+[2026-08-28 14:27:57] [INFO   ] [SYSTEM              ] OPCUA Client démarré !!! 
+[2026-08-28 14:27:58] [INFO   ] [SYSTEM              ] [MonitoredVariablesService] 3 variable(s) synchronisée(s).
+[2026-08-28 14:27:59] [INFO   ] [PLC1_Prosys_Simulator] [SESSION]  Connecté — ID: ns=1;g=9fa39fad-fd69-414a-a9d1-636705d31b2d
+[2026-08-28 14:27:59] [INFO   ] [PLC1_Prosys_Simulator] [SUBSCRIPTION] Créée pour PLC1_Prosys_Simulator
+[2026-08-28 14:27:59] [INFO   ] [PLC1_Prosys_Simulator] [MONITORING] Actif : Simulation.Counter
+[2026-08-28 14:27:59] [INFO   ] [PLC1_Prosys_Simulator] [MONITORING] Actif : Simulation.Random
+[2026-08-28 14:27:59] [INFO   ] [PLC1_Prosys_Simulator] [MONITORING] Actif : Simulation.Sinusoid
+[2026-08-28 14:27:59] [INFO   ] [PLC1_Prosys_Simulator] [STATUS] OK PLC1_Prosys_Simulator — ONLINE

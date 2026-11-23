@@ -1,0 +1,8 @@
+[2026-09-09 15:50:22] [INFO   ] [SYSTEM              ] OPCUA Client démarré !!! 
+[2026-09-09 15:50:23] [INFO   ] [SYSTEM              ] [MonitoredVariablesService] 3 variable(s) synchronisée(s).
+[2026-09-09 15:50:24] [INFO   ] [PLC1_Prosys_Simulator] [SESSION]  Connecté — ID: ns=1;g=1770349b-408a-4679-b6a5-487faed1b3ff
+[2026-09-09 15:50:24] [INFO   ] [PLC1_Prosys_Simulator] [SUBSCRIPTION] Créée pour PLC1_Prosys_Simulator
+[2026-09-09 15:50:25] [INFO   ] [PLC1_Prosys_Simulator] [MONITORING] Actif : Simulation.Counter
+[2026-09-09 15:50:25] [INFO   ] [PLC1_Prosys_Simulator] [MONITORING] Actif : Simulation.Random
+[2026-09-09 15:50:25] [INFO   ] [PLC1_Prosys_Simulator] [MONITORING] Actif : Simulation.Sinusoid
+[2026-09-09 15:50:25] [INFO   ] [PLC1_Prosys_Simulator] [STATUS] OK PLC1_Prosys_Simulator — ONLINE
